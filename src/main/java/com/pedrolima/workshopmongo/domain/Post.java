@@ -1,27 +1,32 @@
 package com.pedrolima.workshopmongo.domain;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class User implements Serializable {
+public class Post implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	private String id;
-	private String name;
-	private String email;
+	private Instant instant;
+	private String title;
+	private String body;
+	private User author;
 	
-	public User() {
+	public Post() {
 	}
 
-	public User(String id, String name, String email) {
+	public Post(String id, Instant instant, String title, String body, User author) {
 		super();
 		this.id = id;
-		this.name = name;
-		this.email = email;
+		this.instant = instant;
+		this.title = title;
+		this.body = body;
+		this.setAuthor(author);
 	}
 
 	public String getId() {
@@ -32,20 +37,36 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public Instant getInstant() {
+		return instant;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setInstant(Instant instant) {
+		this.instant = instant;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getBody() {
+		return body;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
+	}
+
+	public User getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(User author) {
+		this.author = author;
 	}
 
 	@Override
@@ -64,7 +85,7 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Post other = (Post) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

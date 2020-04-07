@@ -11,14 +11,14 @@ import com.pedrolima.workshopmongo.dto.AuthorDTO;
 @Document
 public class Post implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	private String id;
 	private Instant instant;
 	private String title;
 	private String body;
 	private AuthorDTO author;
-	
+
 	public Post() {
 	}
 
